@@ -1,0 +1,24 @@
+Javascript (or JS) adds interactivity to our website
+-Games
+-Responses when buttons are pressed
+-Responses when data is entered in forms
+-Dynamic styling
+-Animations
+-Carousels
+-Image galleries
+-Fluctuating layouts
+
+JavaScript contains:-
+1. Browser Application Programming Interfaces (APIs) - APIs built into web browsers to do things dynamically
+2. Third Party APIs - Allow developers to incorporate functionality into their sites
+3. Third party frameworks and libraries - You can apply these to your HTML to allow you to rapidly build sites and applications
+
+
+Variables
+
+Variables are containers that you can store value in.
+var <variable_name>
+var myVariable;
+myVariable is different from myvariable
+myVariable = "Bob";
+var myVariable = "Bob";
