@@ -23,6 +23,35 @@ myVariable is different from myvariable
 myVariable = "Bob";
 var myVariable = "Bob";
 
+String - A sequence of text
+Number - 
+Boolean - true/false value
+Array - allows you to store multiple values under one single name/reference
+Object - everything in js is object
+
+
+Operators
+
+An operator is a mathematical symbol which produces a result based on two values or variables
+
+Addition - used to add two numbers or glue two strings together
+
+-,*,/
+Assignment
+Equality - perform a test to see if two value are equal or not and returns as true/false as result
+Not, Does-not-equal
+
+
+Conditionals
+if....else statement
+
+
+To open dev tools in chrome,
+Mac - Cmd + opt + I
+Windows - Ctrl + Shift + I
+
+
+
 
 
 
