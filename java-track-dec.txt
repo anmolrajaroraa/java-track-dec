@@ -44,7 +44,7 @@ Arithmetic -> +,-,*,/,%,increment,decrement
 Assignment -> =,+=,-=,*=,/=,%=
 Equality -> perform a test to see if two value are equal or not and returns as true/false as result
 ==,===,!=,!==
-Logical ->
+Logical -> && (AND), || (OR), !(NOT)
 
 
 
