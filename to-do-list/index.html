@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tasks = ["take out garbage", "read a book", "write javascript", "go to gym"];
+        //tasks[4] = "sleep";
+        tasks[tasks.length] = "sleep";
+        tasks[tasks.length] = "abcd";
+        var progress = ["done", "in progress", "to do"];
+        //console.log(status[1]);
+        //console.log(tasks[1]);
+        //console.log(progress[1]);
+        var question1 = prompt(
+            "Which task (1-" + tasks.length + ")?\n" + 
+            "1 - take out garbage\n" + 
+            "2 - read a book\n" + 
+            "3 - write javascript\n" + 
+            "4 - go to gym"
+        )
+        var question2 = prompt(
+            "Status?\n" + 
+            "1 - done\n" + 
+            "2 - in progress\n" + 
+            "3 - to do\n"
+        )
+        console.log("Task - " + tasks[question1 - 1] + ", Status - " + progress[question2 - 1]);
+    </script>
+</body>
+</html>
