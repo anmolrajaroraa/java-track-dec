@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var animals = ["cat", "dog", "rabbit", "bird", "fish", "zebra"];
+        /*//add item at the end of the array
+        animals.push("sheep");
+        console.log("After push " , animals);
+        //remove the last item from the end of an array
+        var remove = animals.pop();
+        console.log("Popped element " + remove);
+        console.log("After pop " , animals);
+        //remove first item
+        animals.shift()
+        console.log("After shift " , animals);
+        //add first item to array
+        animals.unshift("horse");
+        console.log("After unshift " , animals);*/
+        var startVal = animals.length;
+        console.log(startVal);
+        animals[30] = "horse";
+        animals.fill("mouse", startVal, animals.length - 1);
+
+    </script>
+</body>
+</html>
