@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var animals = ["cat", "dog", "rabbit", "bird"];
+        //var posIndex = animals.indexOf("bird");
+        var q = prompt("What do you want to look for?");
+        var p = animals.indexOf(q);
+        var message = (p > -1) ? "Found at " + p : "Not found";
+        console.log(message);
+    </script>
+</body>
+</html>
