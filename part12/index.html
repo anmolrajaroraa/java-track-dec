@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = ["cat", "dog", "fish", 4, 6, 4, 6, "hello", 50];
+        var arr2 = [
+            "cat",
+            "dog",
+            455,
+            true,
+            [1, 2, 3]
+        ];
+        //var car = {color: "red", make: "ford", doors: 5, model: "mustang"}; //literal
+        var car = {
+            color : "red",
+            make : "ford",
+            doors : 5,
+            model : "mustang"
+        }
+        car.price = 10000;
+        //delete car.color;
+        for(var prop in car){
+            //console.log(prop);
+            //console.log(car[prop]);
+            car[prop] = "new value";
+        }
+        //console.log(car);
+        //var carProperty = prompt("What do you want to know about the car?")
+        //console.log(car[carProperty]);
+        // var car2 = new Object();
+        // car2.color = "red";
+        // car2.make = "ford";
+        // console.log(car2);
+    </script>
+</body>
+</html>
