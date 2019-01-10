@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My web page</title>
+</head>
+<body>
+    <div id="output">hello world</div>
+    <!-- <input type="text" id="textbox"> -->
+    <!-- <h2 id="heading">My heading</h2> -->
+    <script>
+        /*var output = document.getElementById("output");
+        var textbox = document.getElementById("textbox");
+        /*output.innerText ="hello <br> world";
+        output.innerHTML = "bye <br> world";
+        document.getElementById("output").innerHTML = "<h1>Welcome to my page</h1>"
+        textbox.placeholder = "updated";
+        textbox.value = output.innerHTML;*/
+        var username = prompt("What is your name?");
+        var output = document.getElementById("output");
+        output.innerText = "Hello " + username;
+    </script>
+</body>
+</html>
