@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"Ternary operator></div>
+    <script>
+        var usernames = ["mike", "john", "larry"];
+        var userInput = prompt("What is your name?");
+        //var userInput = "larry";
+        var output = document.getElementById("output");
+        var htmlOutput = "";
+        //var checkLogin = (usernames.indexOf(userInput) > -1) ? "permitted" : "denied";
+        //output.innerHTML = (usernames.indexOf(userInput) > -1) ? (alert("welcome " + userInput), "permitted ") : "denied";
+        //output.innerHTML = output.innerHTML + userInput;
+        //output.innerHTML += userInput;
+        //var login = true;
+        //var checkLogin = login ? "permitted" : "denied";
+        //output.innerHTML = checkLogin;
+        if(usernames.indexOf(userInput) > -1){
+            alert("Welcome " + userInput);
+            htmlOutput = "Welcome, you have registered already";
+            var age = prompt("What is your age?");
+            htmlOutput += (age >= 18) ? "| You are an adult |" : "| You are a minor |";
+        }
+        else{
+            htmlOutput = "You have been denied entry";
+        }
+        output.innerHTML = htmlOutput + " " + userInput;
+    </script>
+</body>
+</html>
