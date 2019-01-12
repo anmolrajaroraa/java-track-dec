@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var task = prompt("What are you doing?");
+        var output = document.getElementById("output");
+        var htmlOutput;
+        switch(task){
+            case "Getting up":
+                htmlOutput = "8:00 AM";
+                break;
+            case "Lunch":
+                htmlOutput = "12:00 PM";
+                break;
+            case "Dinner":
+                htmlOutput = "8:00 PM";
+                break;
+            default:
+                htmlOutput = "Task not found";
+        }
+        output.innerHTML = htmlOutput;
+    </script>
+</body>
+</html>
