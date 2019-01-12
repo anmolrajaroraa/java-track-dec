@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        //prompt heads or tails
+        //turn value into number
+        //use random 0&1
+        //return back the output if the user won or lost
+        var htmlOutput = "Something went wrong";
+        var output = document.getElementById("output");
+        var choice = prompt("Heads or Tails?");
+        var convertChoice = (choice == "heads") ? 1 : 0;
+        var coinTossValue = Math.floor(Math.random() * 2);
+        if(convertChoice == coinTossValue){
+            htmlOutput = "You won";
+        }
+        else{
+            htmlOutput = "You lost";
+        }
+        output.innerHTML = htmlOutput;
+    </script>
+</body>
+</html>
