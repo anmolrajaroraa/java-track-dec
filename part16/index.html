@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var myTime = prompt("What hour is it?");
+        var output = document.getElementById("output");
+        if(myTime>=8 && myTime<12){
+            output.innerHTML = "Wake up its morning";
+        }
+        else if(myTime>=12 && myTime<13){
+            output.innerHTML = "Go to lunch";
+        }
+        else if(myTime>=13 && myTime<=16){
+            output.innerHTML = "Go to work";
+        }
+        else if(myTime>16 && myTime<20){
+            output.innerHTML = "Dinner time";
+        }
+        else if(myTime>=20){
+            output.innerHTML = "Time to go to sleep";
+        }
+        else{
+            output.innerHTML = "You should be sleeping";
+        }
+    </script>
+</body>
+</html>
