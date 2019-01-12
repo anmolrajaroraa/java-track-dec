@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        //var myTime = prompt("What hour is it?");
+        var myTime = "8";
+        var output = document.getElementById("output");
+        var htmlOutput;
+        switch(myTime){
+            case 8:
+                htmlOutput = "Wake up time";
+                break;
+            case "8":
+                htmlOutput = "Wake up time";
+                break;
+            case "12":
+                htmlOutput = "Lunch";
+                break;
+            case "16":
+                htmlOutput = "Dinner";
+                break;
+            default:
+                htmlOutput = "Nothing to do";
+        }
+        output.innerHTML = htmlOutput;
+    </script>
+</body>
+</html>
