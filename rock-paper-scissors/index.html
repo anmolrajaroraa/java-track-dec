@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var actualPlayerChoice = prompt("What do you choose - Rock, Paper or Scissors?");
+        var playerChoice = actualPlayerChoice.charAt(0).toUpperCase();
+        var win = false;
+        var actualComputerChoice = Math.random();
+        if(actualComputerChoice <=0.33){
+            actualComputerChoice = "Rock";
+        }
+        else if(actualComputerChoice <=0.66){
+            actualComputerChoice = "Paper";
+        }
+        else{
+            actualComputerChoice = "Scissors";
+        }
+        var computerChoice = actualComputerChoice.charAt(0).toUpperCase();
+        console.log(actualPlayerChoice);
+        console.log(playerChoice);
+        console.log(actualComputerChoice);
+        console.log(computerChoice);
+
+        var result = "";
+            if(playerChoice == "R"){
+                actualPlayerChoice = "Rock";
+                if(computerChoice == "S"){
+                    win = true;
+                }
+            }
+            else if(playerChoice == "P"){
+                actualPlayerChoice = "Paper";
+                if(computerChoice == "R"){
+                    win = true;
+                }
+            }
+            else{
+                actualPlayerChoice = "Scissors"
+                if(computerChoice == "P"){
+                    win = true;
+                }
+            }
+
+            if(win){
+                result = "Player has won!";
+                console.log(result);
+            }
+            else if(playerChoice == computerChoice){
+                result = "It's a tie";
+                console.log(result);
+            }
+            else{
+                result = "Computer has won!";
+                console.log(result);
+            }
+        document.getElementById("output").innerHTML = "Rock, Paper & Scissors Game<br>" + actualPlayerChoice + " vs " + actualComputerChoice + "<br>" + result; 
+    </script>
+</body>
+</html>
