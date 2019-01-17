@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        //var userInput = prompt("How  many times do you want to run the loop?");
+        var secretCode = "javascript";
+        var userInput = prompt("What is the secret code?");
+        //var x = 0; //1st thing
+        //while(x<userInput){
+        while(userInput != secretCode){
+            //output.innerHTML += "Value of x is " + x + "<br>";
+            //x++; //2nd thing
+            userInput = prompt("Guess Again!");
+        }
+        //output.innerHTML += "Final value of x is " + x;
+        output.innerHTML += "You guessed it correctly!!";
+    </script>
+</body>
+</html>
