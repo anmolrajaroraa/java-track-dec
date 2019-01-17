@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        // for(var x=0 /*1st step*/; x<=31 /*2nd step,5th step,8th step*/; x++ /*4th step,7th step*/){
+        //     if(x % 2 !== 0){
+        //         output.innerHTML += "Value of x is " + x + "<br>"; /*3rd step,6th step,9th step*/
+        //     }
+        // }
+        var caloriesInBanana = 89;
+        var bananasCount = prompt("How many bananas do you want to eat?");
+        var totalCalories = 0;
+        for(var x=1; x<=bananasCount; x++){
+            totalCalories += caloriesInBanana;
+            output.innerHTML += "Banana " + x + " total calories = " + totalCalories + "<br>";
+        }
+        //output.innerHTML += "Final value of x is " + x;
+        output.innerHTML += "Total calories in " + bananasCount + " bananas = " + totalCalories;
+    </script>
+</body>
+</html>
