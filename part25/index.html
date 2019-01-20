@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var usernames = {
+            a : "mike",
+            b : "john",
+            c : "larry"
+        }
+        for(var x in usernames){
+            output.innerHTML += x + " : " + usernames[x] + "<br>";
+        }
+        /*for(var x in document){
+            output.innerHTML += x + " = " + document[x] + "<br>";
+        }*/
+    </script>
+</body>
+</html>
