@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output">
+        <h1>Shopping List</h1>
+        <br>
+    </div>
+    <script>
+        var output = document.getElementById("output");
+        var itemTobeAdded;
+        var shoppingList = [];
+        var itemCount = prompt("How many items do you want to add in shopping list?");
+        for(var x = 0; x < itemCount; x++){
+            itemTobeAdded = prompt("What item do you want to add? (Enter 'done' to see your shopping list)");
+            if(itemTobeAdded == "done"){
+                break;
+            }
+            shoppingList.push(itemTobeAdded);
+        }
+        for(item of shoppingList){
+            output.innerHTML += item + "<br>";
+        }
+    </script>
+</body>
+</html>
