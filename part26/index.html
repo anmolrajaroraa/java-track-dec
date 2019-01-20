@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+
+        /*function myFunction(){
+            output.innerHTML += "hello<br>";
+        }
+
+        myFunction();
+        myFunction();
+        myFunction();
+        myFunction();*/
+        var response =66;
+        function myFunction(a,b,c){
+            response = a + b + c;
+            //output.innerHTML = response;
+            return response;
+        }
+
+        myFunction(3,5,7);
+    </script>
+</body>
+</html>
