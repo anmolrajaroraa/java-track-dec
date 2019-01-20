@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var usernames = ["mike", "john", "larry", "janet"];
+        for(var x = 0; x < usernames.length; x++){
+            output.innerHTML += usernames[x] + "<br>";
+        }
+        output.innerHTML += "<br>Reverse order:<br>";
+        for(var x = usernames.length - 1; x>=0; x--){
+            output.innerHTML += usernames[x] + "<br>";
+        }
+        output.innerHTML += "<br>While loop output:<br>";
+        var x = 0;
+        while(usernames[x]){
+            output.innerHTML += usernames[x] + "<br>";
+            x++;
+        }
+        output.innerHTML += "<br>For each loop:<br>";
+        for(var x in usernames){
+            output.innerHTML += usernames[x] + "<br>";
+        }
+        output.innerHTML += "<br>";
+        for(var x of usernames){
+            output.innerHTML += x + "<br>";
+        }
+    </script>
+</body>
+</html>
