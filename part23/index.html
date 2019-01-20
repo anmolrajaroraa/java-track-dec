@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        //Loop to 1000
+        //Get all multiples of 5 and add them together
+        //Output the numbers being added 
+        //Output the total after the loop finishes
+        var total = 0;
+        for(var x = 1; x<=10000; x++){
+            if(x % 100 == 0){
+                total += x;
+                output.innerHTML += "Value of x is " + x + ", Subtotal is " + total + "<br>";
+            }
+        }
+        output.innerHTML += "Total is " + total;
+    </script>
+</body>
+</html>
