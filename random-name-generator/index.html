@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <input type="button" value="Click me" onclick="myFunction()">
+    <script>
+        var output = document.getElementById("output");
+        var adjectives = ["super", "wonderful", "bad", "angry", "careful"];
+        
+        function myFunction(){
+            var name = prompt("What is your name?");
+            var randomAdj = Math.floor(Math.random() * adjectives.length);
+            output.innerHTML += adjectives[randomAdj] + " " + name + "<br>";
+        }
+    </script>
+</body>
+</html>
