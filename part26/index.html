@@ -19,13 +19,21 @@
         myFunction();
         myFunction();
         myFunction();*/
-        var response =66;
+        var response = 55;
+        var a = "hello";
         function myFunction(a,b,c){
-            response = a + b + c;
-            //output.innerHTML = response;
-            return response;
+            response = a + b + c; //global
+            var response = a + b + c; //local
+            output.innerHTML = response;
+            //return response;
         }
 
+        function myFunction2(){
+            var b = a + " world";
+            return b;
+        }
+
+        output.innerHTML = response;
         myFunction(3,5,7);
     </script>
 </body>
