@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var outside = "outside the function";
+        function myFunction(){
+            inside = "inside the function";
+            console.log(inside);
+            console.log(outside);
+        }
+        myFunction();
+        console.log(inside);
+        console.log(outside);
+    </script>
+</body>
+</html>
