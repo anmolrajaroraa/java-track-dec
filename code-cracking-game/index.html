@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Code :
+    <input type="text" id="digit1">
+    <input type="text" id="digit2">
+    <input type="text" id="digit3">
+    <br><br>    
+    <input type="button" value="Try code" onclick="checkCode()">
+    <br>
+    <div id="output"></div>
+    <script>
+        var randomCode = [];
+        var count = 0;
+        var output = document.getElementById("output");
+        var digit1 = document.getElementById("digit1");
+        var digit2 = document.getElementById("digit2");
+        var digit3 = document.getElementById("digit3");
+        for(var x=0; x<3; x++){
+            randomCode.push(Math.floor(Math.random() * 10));
+        }
+        //output.innerHTML = randomCode + "<br>";
+        function checkCode(){
+            count = 0;
+            var userGuess = [digit1.value, digit2.value, digit3.value];
+            for(var x=0; x<randomCode.length; x++){
+                output.innerHTML += compareCode(userGuess[x], randomCode[x]);
+            }
+            if(count == 3){
+                output.innerHTML += "<br>You guessed it<br>";
+            }
+            else{
+                output.innerHTML += "<br>";
+            }
+        }
+        function compareCode(a,b){
+            if(a>b){
+                return 'L';
+            }
+            else if(a<b){
+                return 'H';
+            }
+            else if(a==b){
+                count++;
+                console.log(count);
+                return a;
+            }
+        }
+    </script>
+</body>
+</html>
