@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <input type="button" value="Start Game" onclick="start()">
+    <script>
+        var output = document.getElementById("output");
+        var secretWord = "JavaScript";
+
+        function start(){
+            getSecret(prompt("What is the secret word?"));
+        }
+        function getSecret(secret){
+            if(secret == secretWord){
+                output.innerHTML = "You are correct";
+            }
+            else{
+                getSecret(prompt("Guess again!!"));
+            }
+        }
+    </script>
+</body>
+</html>
