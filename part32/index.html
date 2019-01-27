@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //var b = 200;
+        function outerFunction(){
+            var b = 200;
+            console.log("Inside outer function");
+            function innerFunction(){
+                console.log("Inside inner function");
+                b++;
+                console.log("b is " + b);
+                return b;
+            }
+            var c = innerFunction();
+            console.log(c);
+            var d = function(){
+                b++;
+                console.log("Inside anonymous function");
+                console.log("b is " + b);
+                return b;
+            }
+            var e = d();
+            console.log(e);
+        }
+        outerFunction();
+        outerFunction();
+        outerFunction();
+        //innerFunction();
+    </script>
+</body>
+</html>
