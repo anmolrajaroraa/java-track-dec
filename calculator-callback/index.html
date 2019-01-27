@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    First:
+    <input type="text" id="first">
+    Second:
+    <input type="text" id="second">
+    <br>
+    <input type="button" value="Add" onclick="add()">
+    <input type="button" value="Add" onclick="subtract()">
+    <input type="button" value="Add" onclick="multiply()">
+    <input type="button" value="Add" onclick="divide()">
+    <br>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var first = document.getElementById("first");
+        var second = document.getElementById("second");
+        function add(){
+            displayResult(first.value, second.value, "+", function(a,b){
+                return a+b;
+            });
+        }
+        function subtract(){
+            displayResult(first.value, second.value, "-", function(a,b){
+                return a-b;
+            });
+        }
+        function multiply(){
+            displayResult(first.value, second.value, "X", function(a,b){
+                return a*b;
+            });
+        }
+        function divide(){
+            displayResult(first.value, second.value, "/", function(a,b){
+                return a/b;
+            });
+        }
+        function displayResult(a,b,sign,callbackFn){
+            var result = callbackFn(Number(a),Number(b));
+            output.innerHTML += a + " " + sign + " " + b + " = " + result + "<br>";
+        }
+    </script>
+</body>
+</html>
