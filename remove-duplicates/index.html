@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var myArray = ["hello", "world", 23423, "JavaScript", "hello", "world", 23423, 443344, 22, "JavaScript"];
+        var cleanArray = removeDuplicates(myArray);
+        output.innerHTML = myArray + "<br>" + cleanArray;
+
+        function removeDuplicates(myArray){
+            var cleanArray = [];
+            var object = {};
+            for(let x=0; x<myArray.length; x++){
+                console.log(myArray[x]);
+                object[myArray[x]] = "anything";
+            }
+            console.log(object);
+            //console.log(x);
+            for(let x in object){
+                console.log(x);
+                cleanArray.push(x);
+            }
+            return cleanArray;
+        }
+    </script>
+</body>
+</html>
