@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="item">
+    <input type="button" value="Add item" onclick="addItem()">
+    <div id="output"></div>
+    <script>
+        var output = document.getElementById("output");
+        var shoppingList = [];
+        function addItem(){
+            var item = document.getElementById("item").value;
+            shoppingList.push(item);
+
+            function displayList(){
+                output.innerHTML = "";
+                for(let x=0; x<shoppingList.length; x++){
+                    output.innerHTML += (x+1) + ". " + shoppingList[x] + "<br>";
+                }
+            }
+            displayList();
+        }
+    </script>
+</body>
+</html>
