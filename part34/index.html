@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Storing JS object as JSON</h2>
+    <p id="output"></p>
+    <script>
+        var output = document.getElementById("output");
+        var obj = {
+            name : "Mike",
+            age : "25",
+            city : "xyz town"
+        }
+        var json = JSON.stringify(obj);
+        console.log(obj);
+        console.log(json);
+        localStorage.setItem("test_json", json);
+        var text = localStorage.getItem("test_json");
+        var jsObject = JSON.parse(text);
+        output.innerHTML = "Object is " + jsObject.name + " lives in " + jsObject.city;
+    </script>
+</body>
+</html>
