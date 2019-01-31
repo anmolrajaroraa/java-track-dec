@@ -1,0 +1,12 @@
+{
+  "firstname": "John",
+  "lastname": "Smith",
+  "age": 25,
+  "address": {
+    "city": ["abc town", "xyz town"],
+    "house no": "1",
+    "street no": "100"
+  },
+  "married": true,
+  "children": null
+}
