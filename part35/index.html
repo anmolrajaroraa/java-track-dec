@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*var json  = '{"firstname": "John","lastname": "Smith","fullname": "function(a,b){return a+b;}","age": 25,"dob": "2000-12-14","address": {"city": ["abc town", "xyz town"],"house no": "1","street no": "100"},"married": true,"children": null}';
+    localStorage.setItem("person_json",json);
+    var obj = JSON.parse(json);*/
+    fetch("https://raw.githubusercontent.com/anmolrajaroraa/java-track-dec/master/person.json").then(response => {
+        response.json().then(data => {
+            console.log(data);
+            console.log(data.age);
+        }).catch(error => {
+            console.log(error);
+        })
+    }).catch(error => {
+        console.log("error is", error);
+    })
+
+
+    var a  = response => {
+        return response;
+    }
+    </script>
+</body>
+</html>
