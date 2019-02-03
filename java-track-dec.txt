@@ -60,6 +60,66 @@ Mac - Cmd + opt + I
 Windows - Ctrl + Shift + I
 
 
+JSON - JavaScript Object Notation
+JSON is a syntax for storing and exchanging data
+JSON is text
+
+JSON.stringify()
+JSON.parse()
+
+- Data is in key/value pairs
+- Data is separated by commas
+- Curly braces hold objects
+- Square brackets hold arrays
+
+{ "name":"John" }
+
+JSON values can be :-
+- string
+- number
+- an object
+- an array
+- boolean
+- null
+
+{
+	"name": "John",
+	"age": 25,
+	"address": {
+		"city": ["abc town", "xyz town"],
+		"house no": "1",
+		"street no": "100"
+	},
+	"married": true,
+	"children": null
+}
+
+{"employees":[
+	{"firstname":"John","lastname":"Smith"},
+	{"firstname":"Mike","lastname":"abc"}
+	]
+}
+
+<employees>
+	<employee>
+		<firstname>John</firstname>
+		<lastname>Smith</lastname>
+	</employee>
+	<employee>
+		<firstname>Mike</firstname>
+		<lastname>abc</lastname>
+	</employee>
+</employees>
+
+AJAX - Asynchronous JavaScript and XML
+XMLHttpRequest()
+fetch()
+
+jQuery is a JS library
+
+$(selector).action()
+
+
 
 
 
