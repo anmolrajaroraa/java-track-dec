@@ -16,13 +16,27 @@
             age : "25",
             city : "xyz town"
         }
-        var json = JSON.stringify(obj);
-        console.log(obj);
+        var obj2 = {
+            name : "Mike",
+            age : "25",
+            city : "xyz town"
+        }
+        var obj3 = {
+            name : "Mike",
+            age : "25",
+            city : "xyz town"
+        }
+        var arrayOfObjects = [];
+        arrayOfObjects.push(obj);
+        arrayOfObjects.push(obj2);
+        arrayOfObjects.push(obj3);
+        var json = JSON.stringify(arrayOfObjects);
         console.log(json);
-        localStorage.setItem("test_json", json);
-        var text = localStorage.getItem("test_json");
+        localStorage.setItem("objects_json", json);
+        var text = localStorage.getItem("objects_json");
+        //{"name":"Mike","age":"25","city":"xyz town"},{"name":"John","age":"35","city":"abc town"},{"name":"Larry","age":"30","city":["abc town", "xyz town"]}
         var jsObject = JSON.parse(text);
-        output.innerHTML = "Object is " + jsObject.name + " lives in " + jsObject.city;
+        //output.innerHTML = "Object is " + jsObject.name + " lives in " + jsObject.city;
     </script>
 </body>
 </html>
