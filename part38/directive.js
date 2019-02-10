@@ -1,10 +1,12 @@
 app.directive("myDirective",function(){
     return{
-        template: "I am a custom directive"
+        restrict:"EACM",
+        replace: true,
+        template: "<h1>I am a custom directive</h1>"
     }
 });
-app.directive("secondDirective",function(){
+/*app.directive("secondDirective",function(){
     return{
         template: "Second directive"
     }
-})
+})*/
