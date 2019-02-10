@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <p>RootScope has color = {{color}}</p>
+    <div ng-controller="myCtrl">
+        Scope has color = {{color}}
+        <br>
+        RootScope inside controller has color = {{newColor}}
+    </div>
+    <p>RootScope still has color = {{color}}</p>
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope,$rootScope){
+            $scope.color = "crimson";
+            $rootScope.newColor = "green";
+        })   
+        app.run(function($rootScope){
+            $rootScope.color = "yellow";
+        })
+    </script>
+</body>
+</html>
