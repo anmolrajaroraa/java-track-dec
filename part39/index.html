@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+    <style>
+        input.ng-invalid{
+            background-color: crimson;
+            color: white;
+        }
+        input.ng-valid{
+            background-color: chartreuse;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form ng-app="" name="myForm">
+        Email : <input type="email" name="emailBox" ng-model="email" required>
+        <br>
+        Status
+        <br>
+        Valid = {{myForm.emailBox.$valid}}<br>
+        Dirty = {{myForm.emailBox.$dirty}}<br>
+        Touched = {{myForm.emailBox.$touched}}<br>
+        Pristine = {{myForm.emailBox.$pristine}}<br>
+        Untouched = {{myForm.emailBox.$untouched}}
+        <!--<span ng-show="myForm.emailBox.$error.email">Not a valid email address</span>-->
+    </form>
+    <script>
+        angular.module("myApp",[]).controller("myCtrl",function(){
+            $scope.firstname = "John";
+        })
+    </script>
+</body>
+</html>
