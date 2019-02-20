@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="myCtrl">
+                Url of this page is {{myUrl | ngCase}}
+                <br>
+                <table border="1" width="20%">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr ng-repeat="x in names">
+                        <td ng-if="$odd" style="background-color: chartreuse">{{$index + 1}}</td>
+                        <td ng-if="$odd" style="background-color: chartreuse">{{x}}</td>
+                        <td ng-if="$even">{{$index + 1}}</td>
+                        <td ng-if="$even">{{x}}</td>
+                    </tr>
+                </table>
+        </div>
+        <div ng-controller="newCtrl">
+            Json data  = <pre>{{jsonData | json}}</pre>
+            Firstname = {{jsonData.firstname}}
+            <br>
+            Status text = {{statustext}}
+            <br>
+            Status code = {{statusCode}}
+            <br>
+            Config = {{configObject}}
+            <br>
+            Headers = {{headerText}}
+        </div>
+        <div ng-controller="thirdCtrl">
+            Message = {{msg | ngCase}}
+            <br>
+            Time = {{time}}
+        </div>
+        <div ng-controller="useCustomService">
+            Decimal number = {{decimalNum}}
+            Hexadecimal number = {{hexNum}}
+            Binary number = {{binaryNum}}
+            Octal number = {{octNum}}
+            <br>
+            After using filter decimal number is {{decimalNum | myFilter}}
+        </div>
+    </div>
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl", function($scope, $location){
+            $scope.myUrl = $location.absUrl();
+            $scope.names = ["John", "Mike", "Emily", "Larry"];
+        })
+        app.controller("newCtrl", function($scope, $http){
+            /*$http.get("https://raw.githubusercontent.com/anmolrajaroraa/java-track-dec/master/person.json").then(function(response){
+                console.log(response)
+                $scope.jsonData = response.data;
+            })*/
+            $http({
+                method: "GET",
+                url: "https://raw.githubusercontent.com/anmolrajaroraa/java-track-dec/master/person.json"
+            }).then(function successFn(response){
+                $scope.statustext = response.statusText;
+                $scope.statusCode = response.status;
+                $scope.jsonData = response.data;
+                $scope.configObject = response.config;
+                $scope.headerText = response.headers;
+            },function errorFn(response){
+                $scope.statustext = response.statusText;
+                $scope.statusCode = response.status;
+                $scope.jsonData = response.data;
+                $scope.configObject = response.config;
+                $scope.header = response.headers;
+            })
+        })
+        app.controller("thirdCtrl", function($scope, $timeout, $interval){
+            $scope.msg = "Hi, I'm John";
+            $timeout(function(){
+                $scope.msg = "John is offline";
+            }, 5000);
+            $scope.time = new Date().toLocaleTimeString();
+            $interval(function(){
+                $scope.time = new Date().toLocaleTimeString();
+            },1000)
+        })
+        app.controller("useCustomService", function($scope, convertDecimalIntoHexadecimal){
+            $scope.decimalNum = 123456789;
+            $scope.hexNum = convertDecimalIntoHexadecimal.convertDtoH($scope.decimalNum);
+            $scope.binaryNum = convertDecimalIntoHexadecimal.convertDtoB($scope.decimalNum);
+            $scope.octNum = convertDecimalIntoHexadecimal.convertDtoO($scope.decimalNum);
+        })
+        app.service("convertDecimalIntoHexadecimal", function(){
+            this.convertDtoH = function(decimalNum){
+                return decimalNum.toString(16);
+            }
+            this.convertDtoO = function(decimalNum){
+                return decimalNum.toString(8);
+            }
+            this.convertDtoB = function(decimalNum){
+                return decimalNum.toString(2);
+            }
+        })
+        app.filter('myFilter', ['convertDecimalIntoHexadecimal', function(convertDecimalIntoHexadecimal){
+            return function(decimalNum){
+                return convertDecimalIntoHexadecimal.convertDtoH(decimalNum);
+            }
+        }])
+    </script>
+    <script src="filter.js"></script>
+</body>
+</html>
