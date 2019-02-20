@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="myCtrl">
+        <!--<select ng-model="selectedName" ng-options="x for x in names">
+        </select>
+        <select>
+            <option ng-repeat="x in names">{{x}}</option>
+        </select>-->
+        <select ng-model="selection">
+            <option ng-repeat="x in nameObjects">
+                {{x.name}}
+            </option>
+        </select>
+        <br>
+        <h2>Selected name : {{selection}}</h2>
+        <br>
+        <select ng-model="selectedName" ng-options="x.name for x in nameObjects"></select>
+        <br>
+        <h2>{{selectedName.name}} lives in {{selectedName.country}}</h2>
+        <select ng-model="selectedCar" ng-options="x for (x,y) in obj"></select>
+        <br>
+        Selected car : {{selectedCar}}
+        <select ng-model="selectedCar" ng-options="y.color for (x,y) in obj"></select>
+        <br>
+        Selected car : {{selectedCar.brand}}
+        </div>
+        <div ng-controller="newCtrl">
+            <button ng-disabled="flag">Click me!</button>
+            <input type="checkbox" ng-model="flag">
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp',[]);
+        app.controller("myCtrl", function($scope){
+            $scope.names = ["John", "Mike", "Emily", "Larry"];
+            $scope.nameObjects = [
+                {name: "Mike", country: "Germany"},
+                {name: "John", country: "UK"},
+                {name: "Emily", country: "USA"},
+                {name: "Larry", country: "India"}
+            ]
+            $scope.obj = {car1: {brand: "mercedes", color:"silver"}, car2: {brand: "audi", color:"white"}, car3: {brand:"bmw", color:"black"}};
+        })
+        app.controller('newCtrl', function($scope){
+            $scope.flag = false;
+        })
+    </script>
+</body>
+</html>
