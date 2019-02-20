@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        Firstname = {{firstname | uppercase}}
+        Lastname = {{lastname | lowercase}}
+        <br>
+        <!--<li ng-repeat="x in names | orderBy">
+            {{x}}
+        </li>-->
+        <li ng-repeat="x in persons | orderBy:'name'">{{x.name + " lives in "+ x.country}}</li>
+        <br>
+        Price = {{price | currency:"&#x20B9;":4}}
+        <br>
+        <!--<input type="text" ng-model="condition">-->
+        <input type="text" ng-model="num">
+        <br>
+        Normal number = {{num}}
+        Integer = {{num | number}}
+        Negative number = {{-num | number:4}}
+        <!--<li ng-repeat="x in names | filter:condition:true">
+                {{x}}
+        </li>-->
+        <!--<table>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+            </tr>
+            <tr ng-repeat="x in persons | filter:condition:true">
+                <td>{{x.name}}</td>
+                <td>{{x.country}}</td>
+            </tr>
+        </table>-->
+        <!--<li ng-repeat="x in names | filter:'l'">
+            {{x}}
+        </li>-->
+        <br><br>
+        <table border="1" width="20%">
+            <tr>
+                <th ng-click="orderByKey('name')">Name</th>
+                <th ng-click="orderByKey('country')">Country</th>
+            </tr>
+            <tr ng-repeat="x in persons | orderBy:sortKey">
+                <td>{{x.name}}</td>
+                <td>{{x.country}}</td>
+            </tr>
+        </table>
+        <br><br>
+        <!--Object in json -> <pre>{{obj | json:5}}</pre>-->
+        <!--<li ng-repeat="x in names | limitTo:-3:4">
+            {{x}}
+        </li>
+        <br>
+        <h1>{{lastname | limitTo:-7}}</h1>
+        <h2>{{price | limitTo:8}}</h2>-->
+        Default format = {{now | date}}
+        <br>
+        Short  = {{now | date : "short"}}
+        <br>
+        Medium = {{now | date : "medium"}}
+        <br>
+        Short date = {{now | date : "shortDate"}}
+        <br>
+        Medium date = {{now | date : "mediumDate"}}
+        <br>
+        Long date = {{now | date : "longDate"}}
+        <br>
+        Full date = {{now | date : "fullDate"}}
+        <br>
+        Short time = {{now | date : "shortTime"}}
+        <br>
+        Medium time = {{now | date : "mediumTime"}}
+        <br>
+        <!--Now = {{now | date:'EEEE, d MMM, yyyy - hh:mm:ss:sss a Z'}}
+        <br>
+        {{now}}
+        <br>
+        MyDate = {{myDate | date:'EEEE, d MMM, yyyy - hh:mm:ss:sss a '}}-->
+        Fullname = {{fullname | ngCase}}
+    </div>
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope){
+            $scope.fullname = "JOhn SMIth";
+            $scope.firstname = "John";
+            $scope.lastname = "SmithSmith";
+            $scope.names = ["John", "Mike", "Emily", "Larry", "Bob", "Julie", "Juliette"];
+            $scope.persons = [
+                {name:"Mike", country: "Germany"},
+                {name:"John", country: "UK"},
+                {name:"Emily", country: "Denmark"},
+                {name:"Larry", country:"Mexico"},
+                {name:"Bob", country:"Spain"}
+            ];
+            $scope.price = 10000.12345; //1,000,000    10,00,000
+            $scope.num = 0;
+            $scope.orderByKey = function(key){
+                $scope.sortKey = key;
+            }
+            $scope.obj = {
+                name:"John Smith",
+                city:"Berlin",
+                country:"Germany",
+                cars:[
+                    {brand:"Ford",color:"black"},
+                    {brand:"Vlovo", color:"blue"}
+                ]
+            }
+            $scope.now = new Date();
+            $scope.myDate = "2024-02-29T13:10:24.207"
+        })
+    </script>
+    <script src="filter.js"></script>
+</body>
+</html>
