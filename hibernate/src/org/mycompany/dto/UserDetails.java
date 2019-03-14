@@ -5,34 +5,56 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 //@Entity (name="USER_DETAILS")
 @Entity
 @Table (name="USER_DETAILS")
 public class UserDetails {
 	
+	public UserDetails() {
+		// TODO Auto-generated constructor stub
+		UserDetails.objectCount++;
+		System.out.println("Object Count = " + UserDetails.getObjectCount());
+	}
+	
 	@Id
 	@Column (name="USER_ID")
+	@GeneratedValue (strategy=GenerationType.AUTO) //to generate surrogate keys
 	private int userId;
 	
 	@Column (name="USER_NAME")
 	@Basic
 	private String userName;
 	
-	@Column (name="USER_ADDRESS")
-	private String address;
+	//@Column (name="USER_ADDRESS")
+	//private String address;
 	
+	Address address = new Address();
+	
+	//LOB - Long Objects
+	//CLOB - Character-stream LOBs
+	//BLOB - Byte-stream LOBs
 	@Column (name="USER_DESCRIPTION")
+	@Lob
 	private String description;
 	
 	@Column (name="USER_JOINING_DATE")
+	@Temporal (TemporalType.DATE)
 	private Date joiningDate;
 	
 	private static String companyName = "mycompany";
+	private static int objectCount = 0;
 	
 	@Column (name="NOT_TO_BE_PERSISTED")
+	@Transient
 	private String doNotSaveMe;
 	
 	public int getUserId() {
@@ -46,12 +68,6 @@ public class UserDetails {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public String getDescription() {
 		return description;
@@ -76,6 +92,18 @@ public class UserDetails {
 	}
 	public void setDoNotSaveMe(String doNotSaveMe) {
 		this.doNotSaveMe = doNotSaveMe;
+	}
+	public static int getObjectCount() {
+		return objectCount;
+	}
+	public static void setObjectCount(int objectCount) {
+		UserDetails.objectCount = objectCount;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {

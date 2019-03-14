@@ -11,11 +11,12 @@ public class HibernateTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//UserDetails.getCompanyName();
 		UserDetails user = new UserDetails();
-		user.setUserId(1);
+		//user.setUserId(1); //natural key
 		user.setUserName("First user");
-		user.setAddress("First user's address");
-		user.setDescription("Description goes here");
+		//user.setAddress("First user's address");
+		user.setDescription("Description goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes here");
 		user.setJoiningDate(new Date());
 		user.setDoNotSaveMe("Nothing");
 		
@@ -27,9 +28,9 @@ public class HibernateTest {
 		//Object obj = user;
 		
 		UserDetails user2 = new UserDetails();
-		user2.setUserId(2);
+		//user2.setUserId(2);
 		user2.setUserName("Second user");
-		user2.setAddress("Second user's address");
+		//user2.setAddress("Second user's address");
 		user2.setDescription("Description again goes here");
 		user2.setJoiningDate(new Date());
 		user2.setDoNotSaveMe("Nothing again");
@@ -42,6 +43,14 @@ public class HibernateTest {
 		session.save(user);
 		session.save(user2);
 		session.getTransaction().commit();
+		session.close();
+		
+		user = null;
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		user = (UserDetails) session.get(UserDetails.class, 1);
+		System.out.println("User object extracted from DB -> " + user.toString());
 	}
 
 }
