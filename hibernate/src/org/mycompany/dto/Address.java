@@ -1,13 +1,23 @@
 package org.mycompany.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+	
+	@Column (name="STREET_NAME")
 	private String street;
+	
+	@Column (name="CITY_NAME")
 	private String city;
+	
+	@Column (name="STATE_NAME")
 	private String state;
+	
+	@Column (name="PIN_CODE")
 	private String pincode;
+	
 	public String getStreet() {
 		return street;
 	}
@@ -31,5 +41,9 @@ public class Address {
 	}
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", city=" + city + ", state=" + state + ", pincode=" + pincode + "]";
 	}
 }

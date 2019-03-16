@@ -2,8 +2,11 @@ package org.mycompany.dto;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,19 +28,29 @@ public class UserDetails {
 		System.out.println("Object Count = " + UserDetails.getObjectCount());
 	}
 	
-	@Id
-	@Column (name="USER_ID")
-	@GeneratedValue (strategy=GenerationType.AUTO) //to generate surrogate keys
-	private int userId;
+	//@Id
+	//@Column (name="USER_ID")
+	//@GeneratedValue (strategy=GenerationType.AUTO) //to generate surrogate keys
+	//private int userId;
 	
-	@Column (name="USER_NAME")
-	@Basic
-	private String userName;
+	//@Column (name="USER_NAME")
+	//@Basic
+	//private String userName;
 	
 	//@Column (name="USER_ADDRESS")
 	//private String address;
 	
-	Address address = new Address();
+	@Embedded
+	private Address homeAddress;
+	
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name="street", column= @Column(name="OFFICE_STREET_NAME")),
+		@AttributeOverride(name="city", column= @Column(name="OFFICE_CITY_NAME")),
+		@AttributeOverride(name="state", column= @Column(name="OFFICE_STATE_NAME")),
+		@AttributeOverride(name="pincode", column= @Column(name="OFFICE_PIN_CODE"))
+	})
+	private Address officeAddress;
 	
 	//LOB - Long Objects
 	//CLOB - Character-stream LOBs
@@ -57,18 +70,6 @@ public class UserDetails {
 	@Transient
 	private String doNotSaveMe;
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -99,16 +100,17 @@ public class UserDetails {
 	public static void setObjectCount(int objectCount) {
 		UserDetails.objectCount = objectCount;
 	}
-	public Address getAddress() {
-		return address;
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
 	}
-	@Override
-	public String toString() {
-		return "UserDetails [userId=" + userId + ", userName=" + userName + ", address=" + address + ", description="
-				+ description + ", joiningDate=" + joiningDate + ", doNotSaveMe=" + doNotSaveMe + "]";
+	public Address getOfficeAddress() {
+		return officeAddress;
+	}
+	public void setOfficeAddress(Address officeAddress) {
+		this.officeAddress = officeAddress;
 	}
 	
 }
