@@ -1,16 +1,19 @@
 package org.mycompany.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,6 +43,11 @@ public class UserDetails {
 	//@Column (name="USER_ADDRESS")
 	//private String address;
 	
+	//@Id
+	//@Embedded
+	@EmbeddedId
+	private User_Id_And_Name userIdAndName;
+	
 	@Embedded
 	private Address homeAddress;
 	
@@ -51,6 +59,15 @@ public class UserDetails {
 		@AttributeOverride(name="pincode", column= @Column(name="OFFICE_PIN_CODE"))
 	})
 	private Address officeAddress;
+	
+	@ElementCollection
+	@JoinTable (name="USER_PREV_ADDRESSES")
+	//@JoinColumn (name="USER_ID",referencedColumnName="USERDETAILS_USER_ID")
+	@JoinColumns ({
+		@JoinColumn(name="USER_ID",referencedColumnName="USER_ID"),
+		@JoinColumn(name="USER_NAME",referencedColumnName="USER_NAME")
+	})
+	private Set<Address> listOfPrevAddresses = new HashSet<>();
 	
 	//LOB - Long Objects
 	//CLOB - Character-stream LOBs
@@ -112,5 +129,24 @@ public class UserDetails {
 	public void setOfficeAddress(Address officeAddress) {
 		this.officeAddress = officeAddress;
 	}
+	public User_Id_And_Name getUserIdAndName() {
+		return userIdAndName;
+	}
+	public void setUserIdAndName(User_Id_And_Name userIdAndName) {
+		this.userIdAndName = userIdAndName;
+	}
+	public Set<Address> getListOfPrevAddresses() {
+		return listOfPrevAddresses;
+	}
+	public void setListOfPrevAddresses(Set<Address> listOfPrevAddresses) {
+		this.listOfPrevAddresses = listOfPrevAddresses;
+	}
+	@Override
+	public String toString() {
+		return "UserDetails [userIdAndName=" + userIdAndName + ", homeAddress=" + homeAddress + ", officeAddress="
+				+ officeAddress + ", listOfPrevAddresses=" + listOfPrevAddresses + ", description=" + description
+				+ ", joiningDate=" + joiningDate + ", doNotSaveMe=" + doNotSaveMe + "]";
+	}
+	
 	
 }

@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.mycompany.dto.Address;
 import org.mycompany.dto.UserDetails;
+import org.mycompany.dto.User_Id_And_Name;
 
 public class HibernateTest {
 
@@ -15,6 +16,10 @@ public class HibernateTest {
 		//UserDetails.getCompanyName();
 		
 		UserDetails user = new UserDetails();
+		
+		User_Id_And_Name userIdAndName = new User_Id_And_Name();
+		userIdAndName.setUserId(1);
+		userIdAndName.setUserName("First User");
 		
 		Address homeAddress = new Address();
 		homeAddress.setStreet("Street 1");
@@ -28,14 +33,34 @@ public class HibernateTest {
 		officeAddress.setState("State 101");
 		officeAddress.setPincode("111111");
 		
+		Address prevAddress1 = new Address();
+		prevAddress1.setStreet("Old street 1");
+		prevAddress1.setCity("Old city 1");
+		prevAddress1.setState("Old state 1");
+		prevAddress1.setPincode("560056");
+		
+		Address prevAddress2 = new Address();
+		prevAddress2.setStreet("Old street 2");
+		prevAddress2.setCity("Old city 2");
+		prevAddress2.setState("Old state 2");
+		prevAddress2.setPincode("561156");
+		
 		//user.setUserId(1); //natural key
 		//user.setUserName("First user");
 		//user.setAddress("First user's address");
+		user.setUserIdAndName(userIdAndName);
 		user.setDescription("Description goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes hereDescription goes here");
 		user.setJoiningDate(new Date());
 		user.setDoNotSaveMe("Nothing");
 		user.setHomeAddress(homeAddress);
 		user.setOfficeAddress(officeAddress);
+		user.getListOfPrevAddresses().add(prevAddress1);
+		user.getListOfPrevAddresses().add(prevAddress2);
+		
+		//Set<Address> listOfPrevAddresses = new HashSet<>();
+		//listOfPrevAddresses.add(prevAddress1);
+		//listOfPrevAddresses.add(prevAddress2);
+		//user.setListOfPrevAddresses(listOfPrevAddresses);
 		
 		System.out.println(user.toString());
 		System.out.println(UserDetails.getCompanyName());
@@ -45,6 +70,10 @@ public class HibernateTest {
 		//Object obj = user;
 		
 		UserDetails user2 = new UserDetails();
+		
+		User_Id_And_Name userIdAndName2 = new User_Id_And_Name();
+		userIdAndName2.setUserId(2);
+		userIdAndName2.setUserName("Second user");
 		
 		Address homeAddress2 = new Address();
 		homeAddress2.setStreet("Street 2");
@@ -58,14 +87,29 @@ public class HibernateTest {
 		officeAddress2.setState("State 102");
 		officeAddress2.setPincode("111000");
 		
+		Address user2PrevAddress1 = new Address();
+		user2PrevAddress1.setStreet("Old street 101");
+		user2PrevAddress1.setCity("Old city 101");
+		user2PrevAddress1.setState("Old state 101");
+		user2PrevAddress1.setPincode("101010");
+		
+		Address user2PrevAddress2 = new Address();
+		user2PrevAddress2.setStreet("Old street 102");
+		user2PrevAddress2.setCity("Old city 102");
+		user2PrevAddress2.setState("Old state 102");
+		user2PrevAddress2.setPincode("010101");
+		
 		//user2.setUserId(2);
 		//user2.setUserName("Second user");
 		//user2.setAddress("Second user's address");
+		user2.setUserIdAndName(userIdAndName2);
 		user2.setDescription("Description again goes here");
 		user2.setJoiningDate(new Date());
 		user2.setDoNotSaveMe("Nothing again");
 		user2.setHomeAddress(homeAddress2);
 		user2.setOfficeAddress(officeAddress2);
+		user2.getListOfPrevAddresses().add(user2PrevAddress1);
+		user2.getListOfPrevAddresses().add(user2PrevAddress2);
 		
 		System.out.println(user2.toString());
 		System.out.println(UserDetails.getCompanyName());
@@ -81,7 +125,7 @@ public class HibernateTest {
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		user = (UserDetails) session.get(UserDetails.class, 1);
+		user = (UserDetails) session.get(UserDetails.class, userIdAndName);
 		System.out.println("User object extracted from DB -> " + user.toString());
 	}
 
