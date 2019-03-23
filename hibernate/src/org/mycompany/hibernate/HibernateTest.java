@@ -1,5 +1,6 @@
 package org.mycompany.hibernate;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.mycompany.dto.Address;
 import org.mycompany.dto.UserDetails;
 import org.mycompany.dto.User_Id_And_Name;
+import org.mycompany.dto.Vehicle;
 
 public class HibernateTest {
 
@@ -45,6 +47,10 @@ public class HibernateTest {
 		prevAddress2.setState("Old state 2");
 		prevAddress2.setPincode("561156");
 		
+		Vehicle vehicle = new Vehicle();
+		//vehicle.setVehicleId(1);
+		vehicle.setVehicleName("Car");
+		
 		//user.setUserId(1); //natural key
 		//user.setUserName("First user");
 		//user.setAddress("First user's address");
@@ -56,6 +62,7 @@ public class HibernateTest {
 		user.setOfficeAddress(officeAddress);
 		user.getListOfPrevAddresses().add(prevAddress1);
 		user.getListOfPrevAddresses().add(prevAddress2);
+		user.setVehicle(vehicle);
 		
 		//Set<Address> listOfPrevAddresses = new HashSet<>();
 		//listOfPrevAddresses.add(prevAddress1);
@@ -99,6 +106,10 @@ public class HibernateTest {
 		user2PrevAddress2.setState("Old state 102");
 		user2PrevAddress2.setPincode("010101");
 		
+		Vehicle user2vehicle = new Vehicle();
+		//user2vehicle.setVehicleId(2);
+		user2vehicle.setVehicleName("2-wheeler");
+		
 		//user2.setUserId(2);
 		//user2.setUserName("Second user");
 		//user2.setAddress("Second user's address");
@@ -110,6 +121,7 @@ public class HibernateTest {
 		user2.setOfficeAddress(officeAddress2);
 		user2.getListOfPrevAddresses().add(user2PrevAddress1);
 		user2.getListOfPrevAddresses().add(user2PrevAddress2);
+		user2.setVehicle(user2vehicle);
 		
 		System.out.println(user2.toString());
 		System.out.println(UserDetails.getCompanyName());
@@ -118,6 +130,8 @@ public class HibernateTest {
 		session.beginTransaction();
 		session.save(user);
 		session.save(user2);
+		//session.save(vehicle);
+		//session.save(user2vehicle);
 		session.getTransaction().commit();
 		session.close();
 		
@@ -126,7 +140,12 @@ public class HibernateTest {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		user = (UserDetails) session.get(UserDetails.class, userIdAndName);
+		System.out.println("Username is " + user.getUserIdAndName().getUserName());
 		System.out.println("User object extracted from DB -> " + user.toString());
+		//System.out.println("Prev addresses of user -> " + user.getListOfPrevAddresses());
+		session.close();
+		System.out.println("Prev addresses of user -> " + Arrays.toString(user.getListOfPrevAddresses().toArray()));
+		System.out.println(user.getListOfPrevAddresses().size());
 	}
 
 }

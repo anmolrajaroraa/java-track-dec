@@ -19,6 +19,7 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>
         <mapping class="org.mycompany.dto.UserDetails"/>
+        <mapping class="org.mycompany.dto.Vehicle"/>
         <event type="pre-insert"/>
     </session-factory>
 </hibernate-configuration>

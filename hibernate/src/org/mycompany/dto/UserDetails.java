@@ -1,24 +1,30 @@
 package org.mycompany.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 //@Entity (name="USER_DETAILS")
 @Entity
@@ -60,14 +66,31 @@ public class UserDetails {
 	})
 	private Address officeAddress;
 	
-	@ElementCollection
-	@JoinTable (name="USER_PREV_ADDRESSES")
 	//@JoinColumn (name="USER_ID",referencedColumnName="USERDETAILS_USER_ID")
-	@JoinColumns ({
-		@JoinColumn(name="USER_ID",referencedColumnName="USER_ID"),
-		@JoinColumn(name="USER_NAME",referencedColumnName="USER_NAME")
-	})
-	private Set<Address> listOfPrevAddresses = new HashSet<>();
+		/*@JoinColumns ({
+			@JoinColumn(name="USER_ID",referencedColumnName="USER_ID"),
+			@JoinColumn(name="USER_NAME",referencedColumnName="USER_NAME")
+		})*/
+	
+	/*@JoinTable (
+			name="USER_PREV_ADDRESSES",
+			joinColumns=@JoinColumn(name="USER_ID")
+	)*/
+	@ElementCollection(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="USER_PREV_ADDRESSES",
+			joinColumns= {
+					@JoinColumn(name="USER_ID", referencedColumnName="USER_ID"),
+					@JoinColumn(name="USER_NAME", referencedColumnName="USER_NAME")
+			}
+	)
+	@GenericGenerator(name="generic-generator", strategy="increment")
+	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "generic-generator", type = @Type(type="int"))
+	private Collection<Address> listOfPrevAddresses = new ArrayList<>();
+	//private Set<Address> listOfPrevAddresses = new HashSet<>();
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Vehicle vehicle;
 	
 	//LOB - Long Objects
 	//CLOB - Character-stream LOBs
@@ -135,18 +158,23 @@ public class UserDetails {
 	public void setUserIdAndName(User_Id_And_Name userIdAndName) {
 		this.userIdAndName = userIdAndName;
 	}
-	public Set<Address> getListOfPrevAddresses() {
+	public Collection<Address> getListOfPrevAddresses() {
 		return listOfPrevAddresses;
 	}
-	public void setListOfPrevAddresses(Set<Address> listOfPrevAddresses) {
+	public void setListOfPrevAddresses(Collection<Address> listOfPrevAddresses) {
 		this.listOfPrevAddresses = listOfPrevAddresses;
+	}
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	@Override
 	public String toString() {
 		return "UserDetails [userIdAndName=" + userIdAndName + ", homeAddress=" + homeAddress + ", officeAddress="
-				+ officeAddress + ", listOfPrevAddresses=" + listOfPrevAddresses + ", description=" + description
-				+ ", joiningDate=" + joiningDate + ", doNotSaveMe=" + doNotSaveMe + "]";
+				+ officeAddress + ", listOfPrevAddresses=" + listOfPrevAddresses + ", vehicle=" + vehicle
+				+ ", description=" + description + ", joiningDate=" + joiningDate + ", doNotSaveMe=" + doNotSaveMe
+				+ "]";
 	}
-	
-	
 }
