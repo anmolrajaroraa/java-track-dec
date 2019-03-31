@@ -51,6 +51,12 @@ public class HibernateTest {
 		//vehicle.setVehicleId(1);
 		vehicle.setVehicleName("Car");
 		
+		Vehicle vehicle2 = new Vehicle();
+		vehicle2.setVehicleName("SUV");
+		
+		Vehicle vehicle3 = new Vehicle();
+		vehicle3.setVehicleName("Bus");
+		
 		//user.setUserId(1); //natural key
 		//user.setUserName("First user");
 		//user.setAddress("First user's address");
@@ -62,15 +68,25 @@ public class HibernateTest {
 		user.setOfficeAddress(officeAddress);
 		user.getListOfPrevAddresses().add(prevAddress1);
 		user.getListOfPrevAddresses().add(prevAddress2);
-		user.setVehicle(vehicle);
+		//user.setVehicle(vehicle);
+		//user.getVehicles().add(vehicle);
+		//user.getVehicles().add(vehicle2);
+		//user.getVehicles().add(vehicle3);
+		user.assignVehicle(vehicle);
+		user.assignVehicle(vehicle2);
+		user.assignVehicle(vehicle3);
+		
+		//vehicle.setUser(user);
+		//vehicle2.setUser(user);
+		//vehicle3.setUser(user);
 		
 		//Set<Address> listOfPrevAddresses = new HashSet<>();
 		//listOfPrevAddresses.add(prevAddress1);
 		//listOfPrevAddresses.add(prevAddress2);
 		//user.setListOfPrevAddresses(listOfPrevAddresses);
 		
-		System.out.println(user.toString());
-		System.out.println(UserDetails.getCompanyName());
+		//System.out.println(user.toString());
+		//System.out.println(UserDetails.getCompanyName());
 		
 		//Object obj = new Object();
 		//obj.toString();
@@ -110,6 +126,12 @@ public class HibernateTest {
 		//user2vehicle.setVehicleId(2);
 		user2vehicle.setVehicleName("2-wheeler");
 		
+		Vehicle user2vehicle2 = new Vehicle();
+		user2vehicle2.setVehicleName("MUV");
+		
+		Vehicle user2vehicle3 = new Vehicle();
+		user2vehicle3.setVehicleName("3-wheeler");
+		
 		//user2.setUserId(2);
 		//user2.setUserName("Second user");
 		//user2.setAddress("Second user's address");
@@ -121,10 +143,27 @@ public class HibernateTest {
 		user2.setOfficeAddress(officeAddress2);
 		user2.getListOfPrevAddresses().add(user2PrevAddress1);
 		user2.getListOfPrevAddresses().add(user2PrevAddress2);
-		user2.setVehicle(user2vehicle);
+		//user2.setVehicle(user2vehicle);
+		//user2.getVehicles().add(user2vehicle);
+		//user2.getVehicles().add(user2vehicle2);
+		//user2.getVehicles().add(user2vehicle3);
+		user2.assignVehicle(user2vehicle);
+		user2.assignVehicle(user2vehicle2);
+		user2.assignVehicle(user2vehicle3);
 		
-		System.out.println(user2.toString());
-		System.out.println(UserDetails.getCompanyName());
+		//user2vehicle.setUser(user2);
+		//user2vehicle2.setUser(user2);
+		//user2vehicle3.setUser(user2);
+		
+		user.assignVehicle(user2vehicle);
+		user.assignVehicle(user2vehicle2);
+		user.assignVehicle(user2vehicle3);
+		user2.assignVehicle(vehicle);
+		user2.assignVehicle(vehicle2);
+		user2.assignVehicle(vehicle3);
+		
+		//System.out.println(user2.toString());
+		//System.out.println(UserDetails.getCompanyName());
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -136,16 +175,22 @@ public class HibernateTest {
 		session.close();
 		
 		user = null;
+		vehicle = null;
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		user = (UserDetails) session.get(UserDetails.class, userIdAndName);
-		System.out.println("Username is " + user.getUserIdAndName().getUserName());
+		System.out.println("User object extracted");
+//		System.out.println("Vehicle object extracted");
+//		System.out.println("Username is " + user.getUserIdAndName().getUserName());
 		System.out.println("User object extracted from DB -> " + user.toString());
-		//System.out.println("Prev addresses of user -> " + user.getListOfPrevAddresses());
-		session.close();
-		System.out.println("Prev addresses of user -> " + Arrays.toString(user.getListOfPrevAddresses().toArray()));
+//		System.out.println("Prev addresses of user -> " + user.getListOfPrevAddresses());
+//		session.close();
 		System.out.println(user.getListOfPrevAddresses().size());
+		System.out.println("Prev addresses of user -> " + Arrays.toString(user.getListOfPrevAddresses().toArray()));
+		vehicle = (Vehicle) session.get(Vehicle.class, 1);
+		System.out.println("Vehicle object extracted from DB -> " + vehicle.toString());
+		System.out.println("UserList is " + Arrays.toString(vehicle.getUserList().toArray()));
 	}
 
 }

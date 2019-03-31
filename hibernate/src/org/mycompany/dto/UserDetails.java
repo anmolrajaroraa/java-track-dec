@@ -12,11 +12,10 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +32,8 @@ public class UserDetails {
 	
 	public UserDetails() {
 		// TODO Auto-generated constructor stub
-		UserDetails.objectCount++;
-		System.out.println("Object Count = " + UserDetails.getObjectCount());
+		//UserDetails.objectCount++;
+		//System.out.println("Object Count = " + UserDetails.getObjectCount());
 	}
 	
 	//@Id
@@ -76,7 +75,7 @@ public class UserDetails {
 			name="USER_PREV_ADDRESSES",
 			joinColumns=@JoinColumn(name="USER_ID")
 	)*/
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection()
 	@JoinTable(
 			name="USER_PREV_ADDRESSES",
 			joinColumns= {
@@ -89,8 +88,31 @@ public class UserDetails {
 	private Collection<Address> listOfPrevAddresses = new ArrayList<>();
 	//private Set<Address> listOfPrevAddresses = new HashSet<>();
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private Vehicle vehicle;
+	/*@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="VEHICLE_ID")
+	private Vehicle vehicle;*/
+	
+	//@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	/*@JoinTable(
+			name="USER_VEHICLES",
+			joinColumns= {
+					@JoinColumn(name="USER_ID", referencedColumnName="USER_ID"),
+					@JoinColumn(name="USER_NAME", referencedColumnName="USER_NAME")
+			},
+			inverseJoinColumns=@JoinColumn(name="VEHICLE_ID")
+	)*/
+	//private Collection<Vehicle> vehicles = new ArrayList<>();
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="USER_VEHICLES",
+			joinColumns= {
+					@JoinColumn(name="USER_ID", referencedColumnName="USER_ID"),
+					@JoinColumn(name="USER_NAME", referencedColumnName="USER_NAME")
+			},
+			inverseJoinColumns = @JoinColumn(name="VEHICLE_ID")
+	)
+	private Collection<Vehicle> vehicles = new ArrayList<>();
 	
 	//LOB - Long Objects
 	//CLOB - Character-stream LOBs
@@ -109,6 +131,12 @@ public class UserDetails {
 	@Column (name="NOT_TO_BE_PERSISTED")
 	@Transient
 	private String doNotSaveMe;
+	
+	public void assignVehicle(Vehicle vehicle) {
+		this.getVehicles().add(vehicle);
+		//vehicle.setUser(this);
+		vehicle.getUserList().add(this);
+	}
 	
 	public String getDescription() {
 		return description;
@@ -148,7 +176,7 @@ public class UserDetails {
 	}
 	public Address getOfficeAddress() {
 		return officeAddress;
-	}
+	} 
 	public void setOfficeAddress(Address officeAddress) {
 		this.officeAddress = officeAddress;
 	}
@@ -164,16 +192,16 @@ public class UserDetails {
 	public void setListOfPrevAddresses(Collection<Address> listOfPrevAddresses) {
 		this.listOfPrevAddresses = listOfPrevAddresses;
 	}
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Collection<Vehicle> getVehicles() {
+		return vehicles;
 	}
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicles(Collection<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 	@Override
 	public String toString() {
 		return "UserDetails [userIdAndName=" + userIdAndName + ", homeAddress=" + homeAddress + ", officeAddress="
-				+ officeAddress + ", listOfPrevAddresses=" + listOfPrevAddresses + ", vehicle=" + vehicle
+				+ officeAddress + ", listOfPrevAddresses=" + listOfPrevAddresses + ", vehicles=" + vehicles
 				+ ", description=" + description + ", joiningDate=" + joiningDate + ", doNotSaveMe=" + doNotSaveMe
 				+ "]";
 	}
