@@ -1,0 +1,18 @@
+[
+    {
+        "departureAirport" : "IGI",
+        "arrivalAirport" : "SFO",
+        "aircraft" : "Airbus A380",
+        "distance" : 1200,
+        "intercontinental" : true
+    },
+    {
+        "departureAirport" : "TXL",
+        "arrivalAirport" : "LHR"
+    },
+    {
+        "_id": "txl-lhr-1",
+        "departureAirport" : "TXL",
+        "arrivalAirport" : "LHR"
+    }
+]
