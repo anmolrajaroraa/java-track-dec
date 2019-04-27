@@ -10,4 +10,13 @@ router.post('/register', (request, response) => {
     }
     userOperations.add(userObject, response);
 })
+router.post('/login', (request, response) => {
+    let userid = request.body.userid;
+    let password = request.body.password;
+    let userObject = {
+        'userid' : userid,
+        'password' : password
+    }
+    userOperations.verify(userObject, response);
+})
 module.exports = router;

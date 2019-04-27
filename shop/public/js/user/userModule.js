@@ -1,1 +1,1 @@
-const userModule = angular.module('userModule',[]);
+const userModule = angular.module('userModule',['app']);
