@@ -1,5 +1,6 @@
 const userModel = require('../models/userSchema');
 const config = require('../../utils/config');
+const tokenOperations = require('../../utils/token');
 const userOperations = {
     add(userObject, response){
         userModel.create(userObject, err => {
@@ -19,7 +20,8 @@ const userOperations = {
             }
             else{
                 if(doc){
-                    response.status(200).json({status: config.status.SUCCESS, message: 'User login successful'})
+                    let token = tokenOperations.generateToken(userObject.userid);
+                    response.status(200).json({token: token, status: config.status.SUCCESS, message: 'User login successful'})
                 }
                 else{
                     response.status(200).json({status: config.status.FAIL, message: 'Invalid userid or password'});

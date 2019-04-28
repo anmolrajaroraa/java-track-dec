@@ -16,6 +16,7 @@ userModule.controller('userCtrl', ($scope, userFactory, SUCCESS, $window) => {
         promise.then( data => {
             console.log(data);
             if(data.data.status == SUCCESS){
+                localStorage.tokenid = data.data.token;
                 $window.location.href = '/dashboard.html';
             }
             else{

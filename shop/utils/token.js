@@ -10,8 +10,9 @@ const tokenOperations = {
         return decoded;
     }
 }
+module.exports = tokenOperations;
 
-const localToken = tokenOperations.generateToken('jenny');
-console.log('Token is', localToken);
-let decodedObject = tokenOperations.verifyToken(localToken);
-console.log('Decoded object is', decodedObject); 
+// const localToken = tokenOperations.generateToken('jenny');
+// console.log('Token is', localToken);
+// let decodedObject = tokenOperations.verifyToken(localToken);
+// console.log('Decoded object is', decodedObject); 
